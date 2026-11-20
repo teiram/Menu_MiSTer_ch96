@@ -49,7 +49,7 @@ module ddram
 
 assign DDRAM_BURSTCNT = 1;
 assign DDRAM_BE       = (8'd1<<ram_address[2:0]) | {8{ram_read}};
-assign DDRAM_ADDR     = {3'b001, ram_address[28:3]}; // RAM at 0x20000000
+assign DDRAM_ADDR     = (29'h1F000000 >> 3) + ram_address[28:3]; // ch96: 0x1F000000 (was 0x20000000, past 512 MB)
 assign DDRAM_RD       = ram_read;
 assign DDRAM_DIN      = ram_cache;
 assign DDRAM_WE       = ram_write;
